@@ -3,9 +3,9 @@
 
 int	main()
 {
-	int	i = 2;
+	int	i = 43;
 	char	*s;
-	int	fd = open("oneline.txt", O_RDONLY);
+	int	fd = open("ekip.txt", O_RDONLY);
 	while (i--)
 	{
 		s = get_next_line(fd);

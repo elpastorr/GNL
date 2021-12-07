@@ -6,7 +6,7 @@
 /*   By: elpastor <elpastor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:03:20 by elpastor          #+#    #+#             */
-/*   Updated: 2021/12/06 16:33:59 by elpastor         ###   ########.fr       */
+/*   Updated: 2021/12/07 14:06:50 by elpastor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
+void	ft_bzero(void *s, size_t n);
 int		get_bn(const char *s);
 char	*ft_strdup(char *s);
 char	*ft_substr(char *s, unsigned int start, size_t len);

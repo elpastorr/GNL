@@ -6,7 +6,7 @@
 /*   By: elpastor <elpastor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:16:59 by elpastor          #+#    #+#             */
-/*   Updated: 2021/12/06 17:52:44 by elpastor         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:09:49 by elpastor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,24 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+void	ft_bzero(void *s, size_t n)
+{
+	char	*tmp;
+
+	tmp = s;
+	while (n--)
+		*tmp++ = 0;
+}
+
 int	get_bn(const char *s)
 {
 	int	i;
 
 	if (!s)
 		return (-1);
-	i = 0;
-	while (s[i])
-		if (s[i++] == '\n')
+	i = -1;
+	while (s[++i])
+		if (s[i] == '\n')
 			return (i);
 	return (-1);
 }
@@ -103,10 +112,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 	char	*dst;
-	
+
 	if (!s1 || !s2)
 		return (NULL);
-	dst = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	dst = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (dst == NULL)
 		return (NULL);
 	i = -1;
