@@ -6,7 +6,7 @@
 /*   By: elpastor <elpastor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:16:59 by elpastor          #+#    #+#             */
-/*   Updated: 2021/12/07 16:09:49 by elpastor         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:17:50 by elpastor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	char	*tmp;
-
-	tmp = s;
-	while (n--)
-		*tmp++ = 0;
-}
-
-int	get_bn(const char *s)
-{
-	int	i;
-
-	if (!s)
-		return (-1);
-	i = -1;
-	while (s[++i])
-		if (s[i] == '\n')
-			return (i);
-	return (-1);
 }
 
 char	*ft_strdup(char *s)
