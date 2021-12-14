@@ -6,19 +6,18 @@
 /*   By: elpastor <elpastor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:58:51 by elpastor          #+#    #+#             */
-/*   Updated: 2021/12/08 15:18:05 by elpastor         ###   ########.fr       */
+/*   Updated: 2021/12/14 19:20:33 by elpastor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_free(char *tmp, char *buf)
 {
-	char	*tmp;
-
-	tmp = s;
-	while (n--)
-		*tmp++ = 0;
+	free(tmp);
+	tmp = NULL;
+	free(buf);
+	return (NULL);
 }
 
 int	get_bn(const char *s)
@@ -53,13 +52,17 @@ char	*get_str(char **tmp)
 
 char	*get_tmp(int i, char *buf, char *tmp, int fd)
 {
+	int	j;
+
 	if (i > 0)
 		buf[i] = 0;
 	while (i > 0 && get_bn(tmp) == -1)
 	{
 		buf[i] = 0;
 		tmp = ft_strjoin(tmp, buf);
-		ft_bzero(buf, BUFFER_SIZE);
+		j = BUFFER_SIZE;
+		while (j--)
+			buf[j] = 0;
 		if (get_bn(tmp) == -1)
 			i = read(fd, buf, BUFFER_SIZE);
 	}
@@ -88,10 +91,7 @@ char	*get_next_line(int fd)
 	}
 	i = read(fd, buf, BUFFER_SIZE);
 	if (i < 1 && !ft_strlen(tmp))
-	{
-		free(buf);
-		return (NULL);
-	}
+		return (ft_free(tmp, buf));
 	tmp = get_tmp(i, buf, tmp, fd);
 	free(buf);
 	return (get_str(&tmp));
