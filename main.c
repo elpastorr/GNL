@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include "get_next_line.h"
 
-int	main()
+int	main(int ac, char **av)
 {
-	int	i = 43;
 	char	*s;
-	int	fd = open("ekip.txt", O_RDONLY);
-	while (i--)
+	int	fd = open("empty", O_RDONLY);
+	(void)ac;
+	while ((s = get_next_line(fd)))
 	{
-		s = get_next_line(fd);
 		printf("%s", s);
 		free(s);
 	}

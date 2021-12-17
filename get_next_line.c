@@ -6,7 +6,7 @@
 /*   By: elpastor <elpastor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:58:51 by elpastor          #+#    #+#             */
-/*   Updated: 2021/12/14 19:20:33 by elpastor         ###   ########.fr       */
+/*   Updated: 2021/12/17 15:08:25 by elpastor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ char	*get_next_line(int fd)
 	static char	*tmp;
 	int			i;
 
-	if (BUFFER_SIZE < 1 || fd < 0 || fd > 1024)
+	buf = NULL;
+	if (BUFFER_SIZE < 1 || fd < 0 || fd > 1024 || read(fd, buf, 0) == -1)
 		return (NULL);
 	buf = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buf)
@@ -90,9 +91,9 @@ char	*get_next_line(int fd)
 		tmp[0] = 0;
 	}
 	i = read(fd, buf, BUFFER_SIZE);
+	tmp = get_tmp(i, buf, tmp, fd);
 	if (i < 1 && !ft_strlen(tmp))
 		return (ft_free(tmp, buf));
-	tmp = get_tmp(i, buf, tmp, fd);
 	free(buf);
 	return (get_str(&tmp));
 }
